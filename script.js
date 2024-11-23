@@ -72,3 +72,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+  document.addEventListener("DOMContentLoaded", function () {
+    const saranButton = document.getElementById("saran-btn");
+    const modal = document.getElementById("saran-modal");
+    const form = document.getElementById("saran-form");
+    const saranInput = document.getElementById("saran");
+    const saranContainer = document.getElementById("saran-cards-container");
+    const closeModalButton = document.getElementById("close-modal");
+  
+    // Fungsi untuk menyimpan saran ke Local Storage
+    function saveSaranToLocalStorage(saran) {
+      const saranList = JSON.parse(localStorage.getItem("saranList")) || [];
+      saranList.push(saran);
+      localStorage.setItem("saranList", JSON.stringify(saranList));
+    }
+  
+    // Fungsi untuk memuat saran dari Local Storage
+    function loadSaranFromLocalStorage() {
+      const saranList = JSON.parse(localStorage.getItem("saranList")) || [];
+      saranList.forEach((saran) => {
+        const card = document.createElement("div");
+        card.className = "card bg-dark text-light mb-3";
+        card.innerHTML = `
+          <div class="card-body">
+            <p class="card-text">${saran}</p>
+          </div>
+        `;
+        saranContainer.appendChild(card);
+      });
+    }
+  
+    // Panggil fungsi untuk memuat saran saat halaman dimuat
+    loadSaranFromLocalStorage();
+  
+    // Fungsi untuk membuka modal
+    saranButton.addEventListener("click", () => {
+      modal.classList.remove("d-none");
+    });
+  
+    // Fungsi untuk menutup modal
+    closeModalButton.addEventListener("click", () => {
+      modal.classList.add("d-none");
+    });
+  
+    // Fungsi untuk submit form
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+  
+      const saranValue = saranInput.value.trim();
+      if (!saranValue) {
+        alert("Saran tidak boleh kosong!");
+        return;
+      }
+  
+      // Buat card untuk menampilkan saran
+      const card = document.createElement("div");
+      card.className = "card bg-dark text-light mb-3";
+      card.innerHTML = `
+        <div class="card-body">
+          <p class="card-text">${saranValue}</p>
+        </div>
+      `;
+      saranContainer.appendChild(card);
+  
+      // Simpan saran ke Local Storage
+      saveSaranToLocalStorage(saranValue);
+  
+      // Reset input dan tutup modal
+      saranInput.value = "";
+      modal.classList.add("d-none");
+    });
+  });
+  
