@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio-badrun</title>
+  <title>Portfolio-Badrun</title>
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons CDN -->
@@ -21,6 +21,7 @@
       <h1 class="logo" id="cv-title"></h1>
       <nav>
         <ul class="list-unstyled d-flex mb-0">
+          <li><a href="#" id="saran-btn" class="text-light text-decoration-none me-3">Saran</a></li>
           <li><a href="#" id="contact-btn" class="text-light text-decoration-none me-3">kontak</a></li>
           <li><a href="#cv" id="download-btn" class="text-light text-decoration-none">Download</a></li>
         </ul>
@@ -84,8 +85,26 @@
   <!-- Footer -->
   <footer class="bg-dark text-light text-center py-3">
     <p>Terimakasih telah mengunjungi portfolio saya!</p>
+    <div id="saran-cards-container" class="container mt-4"></div>
     <p class="bi bi-geo-alt-fill me-2 ">Universitas 'Aisyiyah yogyakarta</p>
   </footer>
+
+  <div id="saran-modal" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-flex align-items-center justify-content-center">
+    <div class="bg-primary text-dark rounded p-4 shadow-lg w-75">
+      <h3 class="text-center mb-3">Masukkan Saran Anda</h3>
+      <form id="saran-form">
+        <div class="mb-3">
+          <label for="saran" class="form-label">Saran</label>
+          <textarea id="saran" class="form-control" rows="4" placeholder="Tulis saran Anda di sini..." required></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-secondary w-100">Kirim</button>
+          <button type="button" id="close-modal" class="btn btn-secondary w-100 mt-2">Tutup</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
